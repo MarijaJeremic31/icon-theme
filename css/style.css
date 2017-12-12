@@ -26,7 +26,7 @@ img{
 }
 
 #main-menu a,
-h1,h2,h3,h4,h5,h6,a{
+h1,h2,h3,h4,h5,h6{
     font-family: 'PT Sans', sans-serif !important;
 }
 
@@ -432,3 +432,4 @@ footer .nav{
     font-size: 2em;
     text-shadow: 0 0 0.5em black;
 }
+
