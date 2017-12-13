@@ -1,10 +1,12 @@
 $(document).ready(function () {
+    
+    //ANIMATE SCROLL
     $('.navbar-nav a, .landing .container > a').click(function () {
         $('html, body').animate({
             scrollTop: $($.attr(this, 'href')).offset().top
         }, 2000);
     });
-
+//ANIMATE HEADER
     $(window).scroll(function () {
         var scroll = $(window).scrollTop();
         if (scroll > 150) {
@@ -24,8 +26,8 @@ $(document).ready(function () {
         percent();
     });
     percent();
-    
-    function percent(){
+
+    function percent() {
         var vh = $(window).height();
         var scroll = $(window).scrollTop();
 
@@ -36,14 +38,10 @@ $(document).ready(function () {
                 var val = parseInt($(this).attr('data-pct'));
                 var $circle = $(this).find('.svg .bar');
 
-
                 var r = $circle.attr('r');
                 var c = Math.PI * (r * 2);
 
-
-
                 var pct = ((100 - val) / 100) * c;
-
                 $circle.css({strokeDashoffset: pct});
 
             }
@@ -53,94 +51,74 @@ $(document).ready(function () {
 
         });
     }
-    
-    if($('.owl-carousel').length >0){
+
+//TEAM SLIDER
+    if ($('.owl-carousel').length > 0) {
         $('.team').owlCarousel({
-    loop:true,
-    margin:10,
-    dots:false,
-    nav:true,
-    navText:['<','>'],
-    responsiveClass:true,
-    responsive:{
-        0:{
-            items:1
-        },
-        480:{
-            items:2
-        },
-        768:{
-            items:3  
-        }
-        
-    }
-});
-$('.portfolio-slider').owlCarousel({
-    loop:true,
-    margin:10,
-    dots:true,
-    responsiveClass:true,
-    responsive:{
-        0:{
-            items:1
-        },
-        480:{
-            items:2
-        },
-        768:{
-            items:3  
-        },
-        992:{
-           items:4 
-        },
-        1200:{
-           items:5 
-        }
-        
-    }
-});
-}
-$('.example-fontawesome-o').each(function(){
-    var currentRating = $(this).data('current-rating');
+            loop: true,
+            margin: 10,
+            dots: false,
+            nav: true,
+            navText: ['<', '>'],
+            responsiveClass: true,
+            responsive: {
+                0: {
+                    items: 1
+                },
+                480: {
+                    items: 2
+                },
+                768: {
+                    items: 3
+                }
 
-        $('.stars-example-fontawesome-o .current-rating')
-            .find('span')
-            .html(currentRating);
+            }
+        });
 
-        $('.stars-example-fontawesome-o .clear-rating').on('click', function(event) {
+    }
+    
+    //STAR RATING
+    $('.example-fontawesome-o').each(function () {
+        var currentRating = $(this).data('current-rating');
+
+        $(this).find('.current-rating')
+                .find('span')
+                .html(currentRating);
+
+        $(this).find(' .clear-rating').on('click', function (event) {
             event.preventDefault();
 
             $(this)
-                .barrating('clear');
+                    .barrating('clear');
         });
-$(this).barrating({
+        $(this).barrating({
             theme: 'fontawesome-stars-o',
             showSelectedRating: false,
             initialRating: currentRating,
-            onSelect: function(value, text) {
+            onSelect: function (value, text) {
                 if (!value) {
                     $(this)
-                        .barrating('clear');
+                            .barrating('clear');
                 } else {
-                    $('.stars-example-fontawesome-o .current-rating')
-                        .addClass('hidden');
+                    $(this).find(' .current-rating')
+                            .addClass('hidden');
 
-                    $('.stars-example-fontawesome-o .your-rating')
-                        .removeClass('hidden')
-                        .find('span')
-                        .html(value);
+                    $(this).find(' .your-rating')
+                            .removeClass('hidden')
+                            .find('span')
+                            .html(value);
                 }
             },
-            onClear: function(value, text) {
-                $('.stars-example-fontawesome-o')
-                    .find('.current-rating')
-                    .removeClass('hidden')
-                    .end()
-                    .find('.your-rating')
-                    .addClass('hidden');
+            onClear: function (value, text) {
+                $(this).find('.stars-example-fontawesome-o')
+                        .find('.current-rating')
+                        .removeClass('hidden')
+                        .end()
+                        .find('.your-rating')
+                        .addClass('hidden');
             }
         });
-})
+    });
 
 
 });
